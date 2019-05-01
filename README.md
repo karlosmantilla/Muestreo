@@ -287,9 +287,9 @@ Consiste en la selección de $n$ elementos entre los $N$ constituyen la poblaci�
 
 Dado lo anterior, la probabilidad de cada elemento se calcula así:
 
-$$
+`\[
 \frac{1}{\left( \begin{smallmatrix} N \\ n \end{smallmatrix} \right)} \left( \begin{smallmatrix} N - 1 \\ n - 1\end{smallmatrix} \right) = \left( \begin{smallmatrix} n \\ N \end{smallmatrix} \right)
-$$
+\]`
 
 
 El MAS tiene sus propios parámetros:
