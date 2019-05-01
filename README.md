@@ -287,29 +287,22 @@ Consiste en la selección de $n$ elementos entre los $N$ constituyen la poblaci�
 
 Dado lo anterior, la probabilidad de cada elemento se calcula así:
 
-`\[
-\frac{1}{\left( \begin{smallmatrix} N \\ n \end{smallmatrix} \right)} \left( \begin{smallmatrix} N - 1 \\ n - 1\end{smallmatrix} \right) = \left( \begin{smallmatrix} n \\ N \end{smallmatrix} \right)
-\]`
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\frac{1}{\left(&space;\begin{smallmatrix}&space;N&space;\\&space;n&space;\end{smallmatrix}&space;\right)}&space;\left(&space;\begin{smallmatrix}&space;N&space;-&space;1&space;\\&space;n&space;-&space;1\end{smallmatrix}&space;\right)&space;=&space;\left(&space;\begin{smallmatrix}&space;n&space;\\&space;N&space;\end{smallmatrix}&space;\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\frac{1}{\left(&space;\begin{smallmatrix}&space;N&space;\\&space;n&space;\end{smallmatrix}&space;\right)}&space;\left(&space;\begin{smallmatrix}&space;N&space;-&space;1&space;\\&space;n&space;-&space;1\end{smallmatrix}&space;\right)&space;=&space;\left(&space;\begin{smallmatrix}&space;n&space;\\&space;N&space;\end{smallmatrix}&space;\right)" title="\large \frac{1}{\left( \begin{smallmatrix} N \\ n \end{smallmatrix} \right)} \left( \begin{smallmatrix} N - 1 \\ n - 1\end{smallmatrix} \right) = \left( \begin{smallmatrix} n \\ N \end{smallmatrix} \right)" /></a>
 
 
 El MAS tiene sus propios parámetros:
 
 **Media Poblacional:**
-$$
-\overline{Y} = \overline{y} = \sum \frac{y_{1}}{n}
-$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\overline{Y}&space;=&space;\overline{y}&space;=&space;\sum&space;\frac{y_{1}}{n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\overline{Y}&space;=&space;\overline{y}&space;=&space;\sum&space;\frac{y_{1}}{n}" title="\large \overline{Y} = \overline{y} = \sum \frac{y_{1}}{n}" /></a>
+
 **Total Poblacional:**
-$$
-\widehat{Y} = N \overline{y}
-$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\widehat{Y}&space;=&space;N&space;\overline{y}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\widehat{Y}&space;=&space;N&space;\overline{y}" title="\large \widehat{Y} = N \overline{y}" /></a>
+
 **Varianza Poblacional:**
-$$
-\sigma(\overline{y}) = \frac{s^{2}}{n} \frac{N-n}{N}
-$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\sigma(\overline{y})&space;=&space;\frac{s^{2}}{n}&space;\frac{N-n}{N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\sigma(\overline{y})&space;=&space;\frac{s^{2}}{n}&space;\frac{N-n}{N}" title="\large \sigma(\overline{y}) = \frac{s^{2}}{n} \frac{N-n}{N}" /></a>
+
 **Varianza Total:**
-$$
-\sigma(\widehat{Y}) = \frac{N^{2}s^{2}}{n} \frac{N-n}{N}
-$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\sigma(\widehat{Y})&space;=&space;\frac{N^{2}s^{2}}{n}&space;\frac{N-n}{N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\sigma(\widehat{Y})&space;=&space;\frac{N^{2}s^{2}}{n}&space;\frac{N-n}{N}" title="\large \sigma(\widehat{Y}) = \frac{N^{2}s^{2}}{n} \frac{N-n}{N}" /></a>
 
 
 ### ¿cuándo se realiza el muestreo aleatorio simple?
@@ -427,9 +420,8 @@ Como observamos, el tamaño de la muestra es determinante en su 'representativid
 
 En el MAS no hacemos distinción si la población se encuentra dividida en _subpoblaciones_ o estratos; ahora, si tomamos en cuenta esta característica (en el ejemplo que hemos venido desarrollando son las facultades) es necesario construir la muestra de manera tal que contenga elementos de cada estrato. Estas _subpoblaciones_ no se sobreponen y, juntas, forman la población total. Entonces tenemos:
 
-$$
-N_{1} + N_{2} + \dots + N_{L} = \sum_{i=1}^{L} N_{i} = N
-$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;N_{1}&space;&plus;&space;N_{2}&space;&plus;&space;\dots&space;&plus;&space;N_{L}&space;=&space;\sum_{i=1}^{L}&space;N_{i}&space;=&space;N" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;N_{1}&space;&plus;&space;N_{2}&space;&plus;&space;\dots&space;&plus;&space;N_{L}&space;=&space;\sum_{i=1}^{L}&space;N_{i}&space;=&space;N" title="\large N_{1} + N_{2} + \dots + N_{L} = \sum_{i=1}^{L} N_{i} = N" /></a>
+
 
 Una vez que hayamos identificado los estratos, sacamos una muestra de cada uno, esto es equivalente a realizar un MAS en cada uno de los estratos y se conoce como Muestreo Estratificado. Sigamos con el ejemplo de la edad de los estudiantes.
 
@@ -681,9 +673,9 @@ par(mfrow=c(1,1))
 
 ## Muestreo Sistemático
 
-El muestro sistemático consiste en tomar alestoriamente un cierto númoer $i$ de las primeras $k$ unidades que designara en una lista o población de $N$ elementos al primero que va a formar parte de la muestra.
+El muestro sistemático consiste en tomar alestoriamente un cierto númoer _i_ de las primeras _k_ unidades que designara en una lista o población de _N_ elementos al primero que va a formar parte de la muestra.
 
-Luego, de manera casi rígida o sistemática, se va tomando el elemento $i+k$ que está $k$ lugares del i-ésimo en la lista; el $i+2k$ que está a $2k$ lugares y así sucesivamente hasta que se agoten los elementos disponibles en la lista
+Luego, de manera casi rígida o sistemática, se va tomando el elemento _i+k_ que está _k_ lugares del i-ésimo en la lista; el _i+2k_ que está a _2k_ lugares y así sucesivamente hasta que se agoten los elementos disponibles en la lista
 
 
 ```R
