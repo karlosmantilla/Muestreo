@@ -16,30 +16,39 @@ Bien, aceptemos que eso no dice mucho. Veamos la cosa con un ejemplo:
 
 > Se tiene la información sobre todos los estudiantes de la UIS pero se desea trabajar con una muestra de ellos dado el volumen de datos (supongamos que es grande). Los datos son los siguientes:
 
+_Antes que nada, debeos importar los dato. Los tenemos un tres tipos de archivos: portable .RData; .csv y .xlsx.
+La forma de traerlos al ambiente de trabajo dependerá del origen. Vamos a traerlos desde un enlace de internet de archivo portable .RData. (El símbolo numeral representa la anotación y no responde a una línea ejecutable)_
+
 
 ```R
-load('Datos/estudiantes.RData')
+# load('Datos/estudiantes.RData') # Se carga localmente
+load(url('https://www.dropbox.com/s/hboulhkzmu5c993/estudiantes.RData?dl=1')) # Desde una url
+# poblacion <- read.delim('clipboard', header = T, dec = ',') # Copiar y pegar
+# poblacion <- read.csv(url('https://www.dropbox.com/s/qm5siml56nfctw4/matriculados.csv?dl=1')) # tipo csv
 ls() # Con esta función podemos revisar los objetos que tenemos en el área de trabajo
 ```
 
 
-<ol class=list-inline>
-	<li>'mystats'</li>
-	<li>'poblacion'</li>
-</ol>
-
+'poblacion'
 
 
 
 ```R
+class(poblacion)
 dim(poblacion) # Cuáles son las dimensiones de data.frame
 ```
 
 
-<ol class=list-inline>
-	<li>24040</li>
-	<li>21</li>
-</ol>
+'data.frame'
+
+
+
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>18950</li><li>24</li></ol>
 
 
 
@@ -49,29 +58,12 @@ names(poblacion) # Los nombres de las variables del conjunto de datos
 ```
 
 
-<ol class=list-inline>
-	<li>'NUM_DOCUMENTO'</li>
-	<li>'SEXO_BIOLOGICO'</li>
-	<li>'ID_ESTADO_CIVIL'</li>
-	<li>'AÑO.NACIMIENTO'</li>
-	<li>'EDAD'</li>
-	<li>'PAIS.NACIMIENTO'</li>
-	<li>'REGIÓN'</li>
-	<li>'COD_PROG_SNIES'</li>
-	<li>'PROGRAMA'</li>
-	<li>'COD_ESTUDIANTE'</li>
-	<li>'SEDE'</li>
-	<li>'ESTADO'</li>
-	<li>'VIGENTE'</li>
-	<li>'COD_FAC'</li>
-	<li>'FACULTAD'</li>
-	<li>'COD_ESC'</li>
-	<li>'ESCUELA_DEP'</li>
-	<li>'METODOLOGÍA'</li>
-	<li>'PROGRAMA.TIPO'</li>
-	<li>'NIVEL.ACADEMICO'</li>
-	<li>'NIVEL.DE.FORMACION'</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'TIPO_DOC'</li><li>'DOCUMENTO'</li><li>'SEXO_BIOLOGICO'</li><li>'FECHA_NACIMIENTO'</li><li>'AÑO.NACIMIENTO'</li><li>'EDAD'</li><li>'ID_PAIS'</li><li>'PAIS.NACIMIENTO'</li><li>'ID_MUNICIPIO'</li><li>'REGIÓN'</li><li>'DEPARTAMENTO'</li><li>'COD_PROG_SNIES'</li><li>'PROGRAMA'</li><li>'COD_ESTUDIANTE'</li><li>'TIPO_VINCULACION'</li><li>'SEDE'</li><li>'ESTADO'</li><li>'VIGENTE'</li><li>'COD_FAC'</li><li>'FACULTAD'</li><li>'COD_ESC'</li><li>'ESCUELA_DEP'</li><li>'METODOLOGÍA'</li><li>'NIVEL.DE.FORMACION'</li></ol>
 
 
 
@@ -88,14 +80,18 @@ head(edad); tail(edad) # Primeras y últimas observaciones de la tabla
 
 
 <table>
-<thead><tr><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr></thead>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><td>2158108 </td><td>30      </td><td>CIENCIAS</td></tr>
-	<tr><td>2188261 </td><td>26      </td><td>CIENCIAS</td></tr>
-	<tr><td>2168284 </td><td>30      </td><td>CIENCIAS</td></tr>
-	<tr><td>2168283 </td><td>28      </td><td>CIENCIAS</td></tr>
-	<tr><td>2178275 </td><td>28      </td><td>CIENCIAS</td></tr>
-	<tr><td>2188259 </td><td>28      </td><td>CIENCIAS</td></tr>
+	<tr><th scope=row>1</th><td>2140297</td><td>42</td><td>CIENCIAS    </td></tr>
+	<tr><th scope=row>2</th><td>2170036</td><td>26</td><td>SALUD       </td></tr>
+	<tr><th scope=row>3</th><td>2172352</td><td>20</td><td>F. MECÁNICAS</td></tr>
+	<tr><th scope=row>4</th><td>2182367</td><td>26</td><td>F. MECÁNICAS</td></tr>
+	<tr><th scope=row>5</th><td>2184579</td><td>20</td><td>F. QUÍMICAS </td></tr>
+	<tr><th scope=row>6</th><td>2181937</td><td>20</td><td>SALUD       </td></tr>
 </tbody>
 </table>
 
@@ -103,18 +99,28 @@ head(edad); tail(edad) # Primeras y últimas observaciones de la tabla
 
 
 <table>
-<thead><tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr></thead>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><th scope=row>24035</th><td>2172579   </td><td>18        </td><td>C. HUMANAS</td></tr>
-	<tr><th scope=row>24036</th><td>2121969   </td><td>38        </td><td>C. HUMANAS</td></tr>
-	<tr><th scope=row>24037</th><td>2131294   </td><td>27        </td><td>SALUD     </td></tr>
-	<tr><th scope=row>24038</th><td>2172624   </td><td>19        </td><td>C. HUMANAS</td></tr>
-	<tr><th scope=row>24039</th><td>2143435   </td><td>28        </td><td>C. HUMANAS</td></tr>
-	<tr><th scope=row>24040</th><td>2170842   </td><td>19        </td><td>C. HUMANAS</td></tr>
+	<tr><th scope=row>18945</th><td>2193101</td><td>27</td><td>F. QUÍMICAS</td></tr>
+	<tr><th scope=row>18946</th><td>2193093</td><td>21</td><td>SALUD      </td></tr>
+	<tr><th scope=row>18947</th><td>2193100</td><td>23</td><td>F. QUÍMICAS</td></tr>
+	<tr><th scope=row>18948</th><td>2193102</td><td>25</td><td>C. HUMANAS </td></tr>
+	<tr><th scope=row>18949</th><td>2193103</td><td>22</td><td>C. HUMANAS </td></tr>
+	<tr><th scope=row>18950</th><td>2193098</td><td>25</td><td>C. HUMANAS </td></tr>
 </tbody>
 </table>
 
 
+
+
+```R
+library(repr)
+options(repr.plot.width=16, repr.plot.height=16)
+```
 
 
 ```R
@@ -127,7 +133,7 @@ par(mfrow=c(1,1))
 ```
 
 
-![png](output_7_0.png)
+![png](output_9_0.png)
 
 
 Gráficamente, tenemos representada allí las edades de la población estudiantil de la UIS; toda ella, sin distinción de carrera, nivel de formación o cualquier otro tipo de agrupamiento. Seleccionemos una muestra. Empecemos con una de tamaño pequeño:
@@ -140,14 +146,12 @@ head(muestra1)
 ```
 
 
-<ol class=list-inline>
-	<li>17638</li>
-	<li>15500</li>
-	<li>11077</li>
-	<li>5691</li>
-	<li>6596</li>
-	<li>23971</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>12142</li><li>10715</li><li>1736</li><li>1032</li><li>1694</li><li>16822</li></ol>
 
 
 
@@ -161,7 +165,7 @@ par(mfrow=c(1,1))
 ```
 
 
-![png](output_10_0.png)
+![png](output_12_0.png)
 
 
 Cambiemos el tamaño de la muestra y miremos el comportamiento:
@@ -174,14 +178,12 @@ head(muestra2)
 ```
 
 
-<ol class=list-inline>
-	<li>15453</li>
-	<li>2591</li>
-	<li>6997</li>
-	<li>2517</li>
-	<li>8495</li>
-	<li>19828</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>13174</li><li>10226</li><li>1899</li><li>13563</li><li>10739</li><li>17331</li></ol>
 
 
 
@@ -195,7 +197,7 @@ par(mfrow=c(1,1))
 ```
 
 
-![png](output_13_0.png)
+![png](output_15_0.png)
 
 
 Aparentemente, entre más grande la muestra, más se parece a la población; sin embargo, el muestreo está asociado a un nivel de confianza y un nivel de error que son, al final, los que ayudan a determinar el tamaño adecuado de la muestra.
@@ -226,13 +228,17 @@ data.frame(pop,m1,m2)
 
 
 <table>
-<thead><tr><th></th><th scope=col>pop</th><th scope=col>m1</th><th scope=col>m2</th></tr></thead>
+<caption>A data.frame: 5 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>pop</th><th scope=col>m1</th><th scope=col>m2</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><th scope=row>tamaño</th><td>24040.0</td><td>30.0   </td><td>200.0  </td></tr>
-	<tr><th scope=row>media</th><td>   23.0</td><td>23.3   </td><td> 22.6  </td></tr>
-	<tr><th scope=row>desviación estándar</th><td>    5.7</td><td> 6.7   </td><td>  4.9  </td></tr>
-	<tr><th scope=row>simetría</th><td>    2.4</td><td> 2.2   </td><td>  2.1  </td></tr>
-	<tr><th scope=row>kurtosis</th><td>    8.2</td><td> 5.2   </td><td>  6.2  </td></tr>
+	<tr><th scope=row>tamaño</th><td>18950.0</td><td>30.0</td><td>200.0</td></tr>
+	<tr><th scope=row>media</th><td>   21.8</td><td>22.1</td><td> 21.8</td></tr>
+	<tr><th scope=row>desviación estándar</th><td>    4.3</td><td> 4.5</td><td>  4.0</td></tr>
+	<tr><th scope=row>simetría</th><td>    2.8</td><td> 1.5</td><td>  1.5</td></tr>
+	<tr><th scope=row>kurtosis</th><td>   12.6</td><td> 1.6</td><td>  2.8</td></tr>
 </tbody>
 </table>
 
@@ -240,7 +246,7 @@ data.frame(pop,m1,m2)
 
 Antes de avanzar, respondamos algunas preguntas
 * ¿Qué se aprecia en los resultados?
-* ¿Qué diferencias y similitudes se puden ver?
+* ¿Qué diferencias y similitudes se pueden ver?
 * ¿Qué se podría hacer?
 
 Podría decirse que los valores son muy parecidos, que la muestra pequeña y la grande son bastante parecidas a la población y, por inducción, que es representativa. Sin embargo, dependiendo de los características de la población, se requiere de un adecuado diseño más complejo de la muestra, empezando por seleccionar el tamaño adecuado.
@@ -287,22 +293,29 @@ Consiste en la selección de $n$ elementos entre los $N$ constituyen la poblaci�
 
 Dado lo anterior, la probabilidad de cada elemento se calcula así:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\frac{1}{\left(&space;\begin{smallmatrix}&space;N&space;\\&space;n&space;\end{smallmatrix}&space;\right)}&space;\left(&space;\begin{smallmatrix}&space;N&space;-&space;1&space;\\&space;n&space;-&space;1\end{smallmatrix}&space;\right)&space;=&space;\left(&space;\begin{smallmatrix}&space;n&space;\\&space;N&space;\end{smallmatrix}&space;\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\frac{1}{\left(&space;\begin{smallmatrix}&space;N&space;\\&space;n&space;\end{smallmatrix}&space;\right)}&space;\left(&space;\begin{smallmatrix}&space;N&space;-&space;1&space;\\&space;n&space;-&space;1\end{smallmatrix}&space;\right)&space;=&space;\left(&space;\begin{smallmatrix}&space;n&space;\\&space;N&space;\end{smallmatrix}&space;\right)" title="\large \frac{1}{\left( \begin{smallmatrix} N \\ n \end{smallmatrix} \right)} \left( \begin{smallmatrix} N - 1 \\ n - 1\end{smallmatrix} \right) = \left( \begin{smallmatrix} n \\ N \end{smallmatrix} \right)" /></a>
+$$
+\frac{1}{\left( \begin{smallmatrix} N \\ n \end{smallmatrix} \right)} \left( \begin{smallmatrix} N - 1 \\ n - 1\end{smallmatrix} \right) = \left( \begin{smallmatrix} n \\ N \end{smallmatrix} \right)
+$$
 
 
 El MAS tiene sus propios parámetros:
 
 **Media Poblacional:**
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\overline{Y}&space;=&space;\overline{y}&space;=&space;\sum&space;\frac{y_{1}}{n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\overline{Y}&space;=&space;\overline{y}&space;=&space;\sum&space;\frac{y_{1}}{n}" title="\large \overline{Y} = \overline{y} = \sum \frac{y_{1}}{n}" /></a>
-
+$$
+\overline{Y} = \overline{y} = \sum \frac{y_{1}}{n}
+$$
 **Total Poblacional:**
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\widehat{Y}&space;=&space;N&space;\overline{y}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\widehat{Y}&space;=&space;N&space;\overline{y}" title="\large \widehat{Y} = N \overline{y}" /></a>
-
+$$
+\widehat{Y} = N \overline{y}
+$$
 **Varianza Poblacional:**
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\sigma(\overline{y})&space;=&space;\frac{s^{2}}{n}&space;\frac{N-n}{N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\sigma(\overline{y})&space;=&space;\frac{s^{2}}{n}&space;\frac{N-n}{N}" title="\large \sigma(\overline{y}) = \frac{s^{2}}{n} \frac{N-n}{N}" /></a>
-
+$$
+\sigma(\overline{y}) = \frac{s^{2}}{n} \frac{N-n}{N}
+$$
 **Varianza Total:**
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;\sigma(\widehat{Y})&space;=&space;\frac{N^{2}s^{2}}{n}&space;\frac{N-n}{N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;\sigma(\widehat{Y})&space;=&space;\frac{N^{2}s^{2}}{n}&space;\frac{N-n}{N}" title="\large \sigma(\widehat{Y}) = \frac{N^{2}s^{2}}{n} \frac{N-n}{N}" /></a>
+$$
+\sigma(\widehat{Y}) = \frac{N^{2}s^{2}}{n} \frac{N-n}{N}
+$$
 
 
 ### ¿cuándo se realiza el muestreo aleatorio simple?
@@ -320,14 +333,18 @@ head(edad)
 
 
 <table>
-<thead><tr><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr></thead>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><td>2158108 </td><td>30      </td><td>CIENCIAS</td></tr>
-	<tr><td>2188261 </td><td>26      </td><td>CIENCIAS</td></tr>
-	<tr><td>2168284 </td><td>30      </td><td>CIENCIAS</td></tr>
-	<tr><td>2168283 </td><td>28      </td><td>CIENCIAS</td></tr>
-	<tr><td>2178275 </td><td>28      </td><td>CIENCIAS</td></tr>
-	<tr><td>2188259 </td><td>28      </td><td>CIENCIAS</td></tr>
+	<tr><th scope=row>1</th><td>2140297</td><td>42</td><td>CIENCIAS    </td></tr>
+	<tr><th scope=row>2</th><td>2170036</td><td>26</td><td>SALUD       </td></tr>
+	<tr><th scope=row>3</th><td>2172352</td><td>20</td><td>F. MECÁNICAS</td></tr>
+	<tr><th scope=row>4</th><td>2182367</td><td>26</td><td>F. MECÁNICAS</td></tr>
+	<tr><th scope=row>5</th><td>2184579</td><td>20</td><td>F. QUÍMICAS </td></tr>
+	<tr><th scope=row>6</th><td>2181937</td><td>20</td><td>SALUD       </td></tr>
 </tbody>
 </table>
 
@@ -343,14 +360,12 @@ head(muestra3)
 ```
 
 
-<ol class=list-inline>
-	<li>2797</li>
-	<li>19939</li>
-	<li>2018</li>
-	<li>19960</li>
-	<li>5426</li>
-	<li>6710</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>9929</li><li>11108</li><li>12326</li><li>9246</li><li>625</li><li>9455</li></ol>
 
 
 
@@ -364,7 +379,7 @@ par(mfrow=c(1,1))
 ```
 
 
-![png](output_31_0.png)
+![png](output_33_0.png)
 
 
 
@@ -378,13 +393,17 @@ data.frame(pop,m1,m2,m3)
 
 
 <table>
-<thead><tr><th></th><th scope=col>pop</th><th scope=col>m1</th><th scope=col>m2</th><th scope=col>m3</th></tr></thead>
+<caption>A data.frame: 5 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>pop</th><th scope=col>m1</th><th scope=col>m2</th><th scope=col>m3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><th scope=row>tamaño</th><td>24040.0</td><td>30.0   </td><td>200.0  </td><td>500.0  </td></tr>
-	<tr><th scope=row>media</th><td>   23.0</td><td>23.3   </td><td> 22.6  </td><td> 23.3  </td></tr>
-	<tr><th scope=row>desviación estándar</th><td>    5.7</td><td> 6.7   </td><td>  4.9  </td><td>  6.1  </td></tr>
-	<tr><th scope=row>simetría</th><td>    2.4</td><td> 2.2   </td><td>  2.1  </td><td>  2.1  </td></tr>
-	<tr><th scope=row>kurtosis</th><td>    8.2</td><td> 5.2   </td><td>  6.2  </td><td>  5.5  </td></tr>
+	<tr><th scope=row>tamaño</th><td>18950.0</td><td>30.0</td><td>200.0</td><td>500.0</td></tr>
+	<tr><th scope=row>media</th><td>   21.8</td><td>22.1</td><td> 21.8</td><td> 21.7</td></tr>
+	<tr><th scope=row>desviación estándar</th><td>    4.3</td><td> 4.5</td><td>  4.0</td><td>  4.0</td></tr>
+	<tr><th scope=row>simetría</th><td>    2.8</td><td> 1.5</td><td>  1.5</td><td>  2.5</td></tr>
+	<tr><th scope=row>kurtosis</th><td>   12.6</td><td> 1.6</td><td>  2.8</td><td> 10.3</td></tr>
 </tbody>
 </table>
 
@@ -411,7 +430,7 @@ par(mfrow=c(1,1))
 ```
 
 
-![png](output_34_0.png)
+![png](output_36_0.png)
 
 
 Como observamos, el tamaño de la muestra es determinante en su 'representatividad'. De ello hablaremos más adelante, por el momento sigamos viendo otros tipos de muestreo)
@@ -420,8 +439,9 @@ Como observamos, el tamaño de la muestra es determinante en su 'representativid
 
 En el MAS no hacemos distinción si la población se encuentra dividida en _subpoblaciones_ o estratos; ahora, si tomamos en cuenta esta característica (en el ejemplo que hemos venido desarrollando son las facultades) es necesario construir la muestra de manera tal que contenga elementos de cada estrato. Estas _subpoblaciones_ no se sobreponen y, juntas, forman la población total. Entonces tenemos:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{150}&space;\large&space;N_{1}&space;&plus;&space;N_{2}&space;&plus;&space;\dots&space;&plus;&space;N_{L}&space;=&space;\sum_{i=1}^{L}&space;N_{i}&space;=&space;N" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{150}&space;\large&space;N_{1}&space;&plus;&space;N_{2}&space;&plus;&space;\dots&space;&plus;&space;N_{L}&space;=&space;\sum_{i=1}^{L}&space;N_{i}&space;=&space;N" title="\large N_{1} + N_{2} + \dots + N_{L} = \sum_{i=1}^{L} N_{i} = N" /></a>
-
+$$
+N_{1} + N_{2} + \dots + N_{L} = \sum_{i=1}^{L} N_{i} = N
+$$
 
 Una vez que hayamos identificado los estratos, sacamos una muestra de cada uno, esto es equivalente a realizar un MAS en cada uno de los estratos y se conoce como Muestreo Estratificado. Sigamos con el ejemplo de la edad de los estudiantes.
 
@@ -436,13 +456,16 @@ library(dplyr) # Contiene la función select
     
     Attaching package: 'dplyr'
     
+    
     The following objects are masked from 'package:stats':
     
         filter, lag
     
+    
     The following objects are masked from 'package:base':
     
         intersect, setdiff, setequal, union
+    
     
     
 
@@ -462,21 +485,28 @@ Estratos
 
 
 <table>
-<thead><tr><th scope=col>facultad</th><th scope=col>n</th><th scope=col>s</th><th scope=col>p</th></tr></thead>
+<caption>A tibble: 6 × 4</caption>
+<thead>
+	<tr><th scope=col>facultad</th><th scope=col>n</th><th scope=col>s</th><th scope=col>p</th></tr>
+	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><td>C. HUMANAS  </td><td>4115        </td><td> 6.104970   </td><td>0.1711730449</td></tr>
-	<tr><td>CEDEDUIS    </td><td>  19        </td><td>11.373767   </td><td>0.0007903494</td></tr>
-	<tr><td>CIENCIAS    </td><td>1661        </td><td> 5.008459   </td><td>0.0690931780</td></tr>
-	<tr><td>F.MECÁNICAS </td><td>8982        </td><td> 4.771159   </td><td>0.3736272879</td></tr>
-	<tr><td>F.QUÍMICAS  </td><td>4259        </td><td> 5.158950   </td><td>0.1771630616</td></tr>
-	<tr><td>IPRED       </td><td>3129        </td><td> 7.855062   </td><td>0.1301580699</td></tr>
-	<tr><td>SALUD       </td><td>1875        </td><td> 4.124805   </td><td>0.0779950083</td></tr>
+	<tr><td>C. HUMANAS  </td><td>3207</td><td>3.149296</td><td>0.16923483</td></tr>
+	<tr><td>CIENCIAS    </td><td>1265</td><td>3.494117</td><td>0.06675462</td></tr>
+	<tr><td>F. MECÁNICAS</td><td>7126</td><td>2.758794</td><td>0.37604222</td></tr>
+	<tr><td>F. QUÍMICAS </td><td>3111</td><td>3.153490</td><td>0.16416887</td></tr>
+	<tr><td>IPRED       </td><td>2650</td><td>7.498839</td><td>0.13984169</td></tr>
+	<tr><td>SALUD       </td><td>1591</td><td>2.855829</td><td>0.08395778</td></tr>
 </tbody>
 </table>
 
 
 
-Es importante notar la distribución de frecuencias en los estratos. Estas nos permitirán seleccionar adecuadamente cada muestra. Vamos a usar los tamaños previos: `30`, `200` y `500`:
+Es importante notar la distribución de frecuencias en los estratos. Estas nos permitirán seleccionar adecuadamente cada muestra. Vamos a usar los tamaños previos: `30`, `200` y `500`. En este punto la función `nstrata` y `sys.sample` del paquete SamplingUtil. Para instalar este paquete, se debe inicialmente instalar el paquete devtools ya que no se encuentra en CRAN.Las instrucciones son las siguientes:
+
+* Instalar devtools: `install.packages("devtools")`
+* Cargar libreria: `library(devtools)`
+* Instalar SamplingUtils: `install_github("DFJL/SamplingUtil")`
 
 
 ```R
@@ -497,15 +527,18 @@ data.frame(fac=Estratos$facultad,nsizeProp30,nsizeProp200,nsizeProp500)
 
 
 <table>
-<thead><tr><th scope=col>fac</th><th scope=col>p</th><th scope=col>p.1</th><th scope=col>p.2</th></tr></thead>
+<caption>A data.frame: 6 × 4</caption>
+<thead>
+	<tr><th scope=col>fac</th><th scope=col>p</th><th scope=col>p.1</th><th scope=col>p.2</th></tr>
+	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><td>C. HUMANAS </td><td> 6         </td><td>35         </td><td> 86        </td></tr>
-	<tr><td>CEDEDUIS   </td><td> 1         </td><td> 1         </td><td>  1        </td></tr>
-	<tr><td>CIENCIAS   </td><td> 3         </td><td>14         </td><td> 35        </td></tr>
-	<tr><td>F.MECÁNICAS</td><td>12         </td><td>75         </td><td>187        </td></tr>
-	<tr><td>F.QUÍMICAS </td><td> 6         </td><td>36         </td><td> 89        </td></tr>
-	<tr><td>IPRED      </td><td> 4         </td><td>27         </td><td> 66        </td></tr>
-	<tr><td>SALUD      </td><td> 3         </td><td>16         </td><td> 39        </td></tr>
+	<tr><td>C. HUMANAS  </td><td> 6</td><td>34</td><td> 85</td></tr>
+	<tr><td>CIENCIAS    </td><td> 3</td><td>14</td><td> 34</td></tr>
+	<tr><td>F. MECÁNICAS</td><td>12</td><td>76</td><td>189</td></tr>
+	<tr><td>F. QUÍMICAS </td><td> 5</td><td>33</td><td> 83</td></tr>
+	<tr><td>IPRED       </td><td> 5</td><td>28</td><td> 70</td></tr>
+	<tr><td>SALUD       </td><td> 3</td><td>17</td><td> 42</td></tr>
 </tbody>
 </table>
 
@@ -521,26 +554,13 @@ muestrahumanas30
 ```
 
 
-<ol class=list-inline>
-	<li>1934</li>
-	<li>1786</li>
-	<li>1508</li>
-	<li>1456</li>
-	<li>795</li>
-	<li>25</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>723</li><li>1175</li><li>3191</li><li>2382</li><li>2484</li><li>2815</li></ol>
 
-
-
-
-```R
-ncedeuis30<-1
-muestracedeuis30<- sample(1:nrow(edad[edad$facultad=='CEDEDUIS',]),size=ncedeuis30,replace=FALSE)
-muestracedeuis30
-```
-
-
-19
 
 
 
@@ -551,72 +571,63 @@ muestraciencias30
 ```
 
 
-<ol class=list-inline>
-	<li>872</li>
-	<li>466</li>
-	<li>142</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>834</li><li>1207</li><li>594</li></ol>
 
 
 
 
 ```R
 nmecanicas30<-12
-muestramecanicas30<- sample(1:nrow(edad[edad$facultad=='F.MECÁNICAS',]),size=nmecanicas30,replace=FALSE)
+muestramecanicas30<- sample(1:nrow(edad[edad$facultad=='F. MECÁNICAS',]),size=nmecanicas30,replace=FALSE)
 muestramecanicas30
 ```
 
 
-<ol class=list-inline>
-	<li>1156</li>
-	<li>2843</li>
-	<li>3358</li>
-	<li>1724</li>
-	<li>5328</li>
-	<li>7753</li>
-	<li>1461</li>
-	<li>119</li>
-	<li>4954</li>
-	<li>5660</li>
-	<li>8410</li>
-	<li>6210</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3201</li><li>3203</li><li>4050</li><li>2333</li><li>2218</li><li>5623</li><li>5195</li><li>3234</li><li>1419</li><li>450</li><li>3408</li><li>1116</li></ol>
 
 
 
 
 ```R
-nquimicas30<-6
-muestraquimicas30<- sample(1:nrow(edad[edad$facultad=='F.QUÍMICAS',]),size=nquimicas30,replace=FALSE)
+nquimicas30<-5
+muestraquimicas30<- sample(1:nrow(edad[edad$facultad=='F. QUÍMICAS',]),size=nquimicas30,replace=FALSE)
 muestraquimicas30
 ```
 
 
-<ol class=list-inline>
-	<li>293</li>
-	<li>759</li>
-	<li>3025</li>
-	<li>2543</li>
-	<li>2242</li>
-	<li>3350</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>610</li><li>807</li><li>1137</li><li>2001</li><li>3056</li></ol>
 
 
 
 
 ```R
-nipred30<-4
+nipred30<-5
 muestraipred30<- sample(1:nrow(edad[edad$facultad=='IPRED',]),size=nipred30,replace=FALSE)
 muestraipred30
 ```
 
 
-<ol class=list-inline>
-	<li>2703</li>
-	<li>1943</li>
-	<li>1089</li>
-	<li>1616</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1366</li><li>1173</li><li>1983</li><li>552</li><li>1460</li></ol>
 
 
 
@@ -628,11 +639,12 @@ muestrasalud30
 ```
 
 
-<ol class=list-inline>
-	<li>1821</li>
-	<li>863</li>
-	<li>261</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1539</li><li>293</li><li>1348</li></ol>
 
 
 
@@ -640,7 +652,7 @@ Construyamos un vector que nos permita seleccionar la muestra:
 
 
 ```R
-mestrato30<-c(muestrahumanas30,muestracedeuis30,muestraciencias30,muestramecanicas30,muestraquimicas30,muestraipred30,muestrasalud30)
+mestrato30<-c(muestrahumanas30,muestraciencias30,muestramecanicas30,muestraquimicas30,muestraipred30,muestrasalud30)
 ```
 
 Y unas gráficas que nos permitan comparar:
@@ -664,7 +676,7 @@ par(mfrow=c(1,1))
 ```
 
 
-![png](output_55_0.png)
+![png](output_56_0.png)
 
 
 * ¿Qué diferencias observamos?
@@ -673,9 +685,9 @@ par(mfrow=c(1,1))
 
 ## Muestreo Sistemático
 
-El muestro sistemático consiste en tomar alestoriamente un cierto númoer _i_ de las primeras _k_ unidades que designara en una lista o población de _N_ elementos al primero que va a formar parte de la muestra.
+El muestro sistemático consiste en tomar alestoriamente un cierto númoer $i$ de las primeras $k$ unidades que designara en una lista o población de $N$ elementos al primero que va a formar parte de la muestra.
 
-Luego, de manera casi rígida o sistemática, se va tomando el elemento _i+k_ que está _k_ lugares del i-ésimo en la lista; el _i+2k_ que está a _2k_ lugares y así sucesivamente hasta que se agoten los elementos disponibles en la lista
+Luego, de manera casi rígida o sistemática, se va tomando el elemento $i+k$ que está $k$ lugares del i-ésimo en la lista; el $i+2k$ que está a $2k$ lugares y así sucesivamente hasta que se agoten los elementos disponibles en la lista
 
 
 ```R
@@ -690,38 +702,12 @@ msis30
 ```
 
 
-<ol class=list-inline>
-	<li>296</li>
-	<li>1097</li>
-	<li>1898</li>
-	<li>2699</li>
-	<li>3500</li>
-	<li>4301</li>
-	<li>5102</li>
-	<li>5903</li>
-	<li>6704</li>
-	<li>7505</li>
-	<li>8306</li>
-	<li>9107</li>
-	<li>9908</li>
-	<li>10709</li>
-	<li>11510</li>
-	<li>12311</li>
-	<li>13112</li>
-	<li>13913</li>
-	<li>14714</li>
-	<li>15515</li>
-	<li>16316</li>
-	<li>17117</li>
-	<li>17918</li>
-	<li>18719</li>
-	<li>19520</li>
-	<li>20321</li>
-	<li>21122</li>
-	<li>21923</li>
-	<li>22724</li>
-	<li>23525</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>541</li><li>1172</li><li>1803</li><li>2434</li><li>3065</li><li>3696</li><li>4327</li><li>4958</li><li>5589</li><li>6220</li><li>6851</li><li>7482</li><li>8113</li><li>8744</li><li>9375</li><li>10006</li><li>10637</li><li>11268</li><li>11899</li><li>12530</li><li>13161</li><li>13792</li><li>14423</li><li>15054</li><li>15685</li><li>16316</li><li>16947</li><li>17578</li><li>18209</li><li>18840</li></ol>
 
 
 
@@ -733,34 +719,22 @@ head(msis200,10);tail(msis200,10)
 ```
 
 
-<ol class=list-inline>
-	<li>58</li>
-	<li>178</li>
-	<li>298</li>
-	<li>418</li>
-	<li>538</li>
-	<li>658</li>
-	<li>778</li>
-	<li>898</li>
-	<li>1018</li>
-	<li>1138</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>9</li><li>103</li><li>197</li><li>291</li><li>385</li><li>479</li><li>573</li><li>667</li><li>761</li><li>855</li></ol>
 
 
 
 
-<ol class=list-inline>
-	<li>22858</li>
-	<li>22978</li>
-	<li>23098</li>
-	<li>23218</li>
-	<li>23338</li>
-	<li>23458</li>
-	<li>23578</li>
-	<li>23698</li>
-	<li>23818</li>
-	<li>23938</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>17869</li><li>17963</li><li>18057</li><li>18151</li><li>18245</li><li>18339</li><li>18433</li><li>18527</li><li>18621</li><li>18715</li></ol>
 
 
 
@@ -772,34 +746,22 @@ head(msis500,10);tail(msis500,10)
 ```
 
 
-<ol class=list-inline>
-	<li>23</li>
-	<li>71</li>
-	<li>119</li>
-	<li>167</li>
-	<li>215</li>
-	<li>263</li>
-	<li>311</li>
-	<li>359</li>
-	<li>407</li>
-	<li>455</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>33</li><li>70</li><li>107</li><li>144</li><li>181</li><li>218</li><li>255</li><li>292</li><li>329</li><li>366</li></ol>
 
 
 
 
-<ol class=list-inline>
-	<li>23543</li>
-	<li>23591</li>
-	<li>23639</li>
-	<li>23687</li>
-	<li>23735</li>
-	<li>23783</li>
-	<li>23831</li>
-	<li>23879</li>
-	<li>23927</li>
-	<li>23975</li>
-</ol>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>18163</li><li>18200</li><li>18237</li><li>18274</li><li>18311</li><li>18348</li><li>18385</li><li>18422</li><li>18459</li><li>18496</li></ol>
 
 
 
@@ -812,14 +774,18 @@ head(m30sis)
 
 
 <table>
-<thead><tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr></thead>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><th scope=row>296</th><td>2178774    </td><td>31         </td><td>F.QUÍMICAS </td></tr>
-	<tr><th scope=row>1097</th><td>2188584    </td><td>35         </td><td>F.QUÍMICAS </td></tr>
-	<tr><th scope=row>1898</th><td>2188465    </td><td>37         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>2699</th><td>2187583    </td><td>21         </td><td>IPRED      </td></tr>
-	<tr><th scope=row>3500</th><td>2187523    </td><td>23         </td><td>IPRED      </td></tr>
-	<tr><th scope=row>4301</th><td>2186291    </td><td>44         </td><td>IPRED      </td></tr>
+	<tr><th scope=row>541</th><td>2161144</td><td>21</td><td>F. MECÁNICAS</td></tr>
+	<tr><th scope=row>1172</th><td>2191756</td><td>17</td><td>C. HUMANAS  </td></tr>
+	<tr><th scope=row>1803</th><td>2170769</td><td>20</td><td>CIENCIAS    </td></tr>
+	<tr><th scope=row>2434</th><td>2191513</td><td>17</td><td>C. HUMANAS  </td></tr>
+	<tr><th scope=row>3065</th><td>2192423</td><td>17</td><td>F. QUÍMICAS </td></tr>
+	<tr><th scope=row>3696</th><td>2172009</td><td>19</td><td>F. MECÁNICAS</td></tr>
 </tbody>
 </table>
 
@@ -833,14 +799,18 @@ head(m200sis)
 
 
 <table>
-<thead><tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr></thead>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><th scope=row>58</th><td>2169097    </td><td>26         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>178</th><td>2188805    </td><td>25         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>298</th><td>2178119    </td><td>32         </td><td>CIENCIAS   </td></tr>
-	<tr><th scope=row>418</th><td>2188812    </td><td>45         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>538</th><td>2188058    </td><td>32         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>658</th><td>2087747    </td><td>33         </td><td>F.MECÁNICAS</td></tr>
+	<tr><th scope=row>9</th><td>2192816</td><td>19</td><td>F. QUÍMICAS</td></tr>
+	<tr><th scope=row>103</th><td>2166170</td><td>41</td><td>IPRED      </td></tr>
+	<tr><th scope=row>197</th><td>2176187</td><td>43</td><td>IPRED      </td></tr>
+	<tr><th scope=row>291</th><td>2086381</td><td>36</td><td>IPRED      </td></tr>
+	<tr><th scope=row>385</th><td>2065314</td><td>47</td><td>IPRED      </td></tr>
+	<tr><th scope=row>479</th><td>2196463</td><td>19</td><td>IPRED      </td></tr>
 </tbody>
 </table>
 
@@ -854,14 +824,18 @@ head(m500sis)
 
 
 <table>
-<thead><tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr></thead>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>codigo</th><th scope=col>edad</th><th scope=col>facultad</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><th scope=row>23</th><td>2158775    </td><td>29         </td><td>CIENCIAS   </td></tr>
-	<tr><th scope=row>71</th><td>2168300    </td><td>27         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>119</th><td>2148687    </td><td>30         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>167</th><td>2188192    </td><td>25         </td><td>CIENCIAS   </td></tr>
-	<tr><th scope=row>215</th><td>2188274    </td><td>24         </td><td>F.MECÁNICAS</td></tr>
-	<tr><th scope=row>263</th><td>2169111    </td><td>41         </td><td>CIENCIAS   </td></tr>
+	<tr><th scope=row>33</th><td>2174613</td><td>19</td><td>F. MECÁNICAS</td></tr>
+	<tr><th scope=row>70</th><td>2032251</td><td>38</td><td>C. HUMANAS  </td></tr>
+	<tr><th scope=row>107</th><td>2176210</td><td>47</td><td>IPRED       </td></tr>
+	<tr><th scope=row>144</th><td>2176175</td><td>36</td><td>IPRED       </td></tr>
+	<tr><th scope=row>181</th><td>2196296</td><td>40</td><td>IPRED       </td></tr>
+	<tr><th scope=row>218</th><td>2186056</td><td>50</td><td>IPRED       </td></tr>
 </tbody>
 </table>
 
@@ -887,14 +861,7 @@ with(edad[mestrato30,], hist(edad, nclass = 50, main = 'ME (30)'))
 with(edad[msis30,], hist(edad, nclass = 50, main = 'MS (30)'))
 
 par(mfrow=c(1,1))
-```
 
-
-![png](output_65_0.png)
-
-
-
-```R
 # Con la muestra 200
 par(mfrow=c(3,3))
 with(edad, plot(facultad,edad, main = 'Población', ylim=c(0,85)))
@@ -914,6 +881,10 @@ par(mfrow=c(1,1))
 
 
 ![png](output_66_0.png)
+
+
+
+![png](output_66_1.png)
 
 
 ## Ejercicio
